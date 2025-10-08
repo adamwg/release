@@ -35,7 +35,7 @@ examples of each step, assuming release vX.Y.0 is being cut.
   - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into `main`
     - https://github.com/crossplane/crossplane/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
   - [ ] Created the release branch using the [GitHub UI][create-branch].
-  - [ ] (On the **Main** Branch) created and merged a PR bumping the Crossplane Runtime dependency to the release candidate tag from , `vX.Y+1.0-rc.0`.
+  - [ ] (On the **Main** Branch) created and merged a PR bumping the Crossplane Runtime dependency to the release candidate tag on main, `vX.Y+1.0-rc.0`.
   - [ ] (On the **Release** Branch) created and merged a PR bumping the Crossplane Runtime dependency to the release candidate tag on the release branch, `vX.Y.0-rc.1`.
   - [ ] (On the **Main** Branch) Run the [Tag workflow][tag-workflow] with the release candidate tag for the next release, `vX.Y+1.0-rc.0`. Message suggested, but not required: `Release candidate vX.Y+1.0-rc.0`.
   - [ ] (On the **Main** Branch) created and merged a PR to add the new release branch to the `baseBranches` list in `.github/renovate.json5`.

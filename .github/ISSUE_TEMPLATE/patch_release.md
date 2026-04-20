@@ -23,9 +23,9 @@ examples of each step, assuming vX.Y.Z is being cut.
 
 - [ ] Determine whether a Crossplane Runtime patch is needed by checking if the `release-X.Y` branch of `crossplane-runtime` has commits ahead of its latest tag. If so, cut a Crossplane Runtime patch and consume it from Crossplane:
   - [ ] **[In Crossplane Runtime]**:
-    - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.<R>`. Message suggested, but not required: `Release vX.Y.<R>`.
-    - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.Y.<R-1>`, so the previous patch release for the same minor (or `vX.Y.0` for the first patch).
-  - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Open and merge a PR updating the Crossplane Runtime dependency to `vX.Y.<R>`.
+    - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.Z`. Message suggested, but not required: `Release vX.Y.Z`.
+    - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.Y.<Z-1>`, so the previous patch release for the same minor (or `vX.Y.0` for the first patch).
+  - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Open and merge a PR updating the Crossplane Runtime dependency to `vX.Y.Z`.
 - [ ] Run the [Tag workflow][tag-workflow] on the `release-X.Y` branch with the proper release version, `vX.Y.Z`. Message suggested, but not required: `Release vX.Y.Z`.
 - [ ] Run the [CI workflow][ci-workflow] on the release branch and verified that the tagged build version exists on the [releases.crossplane.io] `build` channel, e.g. `build/release-X.Y/vX.Y.Z/...` should contain all the relevant binaries.
 - [ ] Confirm the full set of patch versions that will be released and promote them from lowest to highest, so the **highest** version is the **last** to be promoted (e.g. `v1.12.2` should be promoted after `v1.11.3`), in order to avoid the promote workflow overwriting the latest patch release.

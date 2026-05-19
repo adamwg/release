@@ -28,7 +28,7 @@ examples of each step, assuming release vX.Y.0 is being cut.
   - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into `main`
     - https://github.com/crossplane/crossplane-runtime/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
   - [ ] Created the release branch using the [GitHub UI][create-branch].
-  - [ ] (On the **Main** Branch) Created and merged a PR to add the new release branch to the `baseBranches` list in `.github/renovate.json5`.
+  - [ ] (On the **Main** Branch) Created and merged a PR to add the new release branch to the `baseBranches` list in `.github/renovate-base.json5`.
   - [ ] (On the **Main** Branch) Run the [Tag workflow][tag-workflow-runtime] with the release candidate tag for the next release `vX.Y+1.0-rc.0`. Message suggested, but not required: `Release candidate vX.Y+1.0-rc.0`.
   - [ ] (On the **Release** Branch) Run the [Tag workflow][tag-workflow-runtime] with the release candidate tag for the next release `vX.Y.0-rc.1` (assuming the latest rc tag for `vX.Y.0` is `vX.Y.0-rc.0`). Message suggested, but not required: `Release candidate vX.Y.0-rc.1`.
 - [ ] **[In Core Crossplane]:** Prepared the release branch `release-X.Y`:
@@ -38,7 +38,7 @@ examples of each step, assuming release vX.Y.0 is being cut.
   - [ ] (On the **Main** Branch) created and merged a PR bumping the Crossplane Runtime dependency to the release candidate tag on main, `vX.Y+1.0-rc.0`.
   - [ ] (On the **Release** Branch) created and merged a PR bumping the Crossplane Runtime dependency to the release candidate tag on the release branch, `vX.Y.0-rc.1`.
   - [ ] (On the **Main** Branch) Run the [Tag workflow][tag-workflow] with the release candidate tag for the next release, `vX.Y+1.0-rc.0`. Message suggested, but not required: `Release candidate vX.Y+1.0-rc.0`.
-  - [ ] (On the **Main** Branch) created and merged a PR to add the new release branch to the `baseBranches` list in `.github/renovate.json5`.
+  - [ ] (On the **Main** Branch) created and merged a PR to add the new release branch to the `baseBranches` list in `.github/renovate-base.json5`.
 - [ ] **[In Core Crossplane]:** Cut a Crossplane **release candidate** from the release branch `release-X.Y`:
   - [ ] (On the **Release** Branch) Run the [Tag workflow][tag-workflow] with the release candidate tag for the release `vX.Y.0-rc.1` (assuming the latest rc tag for `vX.Y.0` is `vX.Y.0-rc.0`). Message suggested but not required: `Release candidate vX.Y.0-rc.1`.
   - [ ] (On the **Release** Branch) Run the [CI workflow][ci-workflow] and verified that the tagged build version exists on the [releases.crossplane.io] `build` channel, e.g. `build/release-X.Y/vX.Y.0-rc.1/...` should contain all the relevant binaries.
@@ -60,7 +60,7 @@ examples of each step, assuming release vX.Y.0 is being cut.
   - [ ] **[In Crossplane Runtime]**:
     - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.0`. Message suggested, but not required: `Release vX.Y.0`.
     - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.<Y-1>.0`, so the first of the releases for the previous minor.
-    - [ ] Update the `baseBranches` list in `.github/renovate.json5` on `main`, removing the now old unsupported release.
+    - [ ] Update the `baseBranches` list in `.github/renovate-base.json5` on `main`, removing the now old unsupported release.
   - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Update the Crossplane Runtime dependency to `vX.Y.0`.
 - [ ] (On the **Release** Branch) Run the [Tag workflow][tag-workflow] with the proper release version, `vX.Y.0`. Message suggested, but not required: `Release vX.Y.0`.
 - [ ] (On the **Release** Branch) Run the [CI workflow][ci-workflow] and verified that the tagged build version exists on the [releases.crossplane.io] `build` channel, e.g. `build/release-X.Y/vX.Y.0/...` should contain all the relevant binaries.
@@ -73,7 +73,7 @@ examples of each step, assuming release vX.Y.0 is being cut.
 - [ ] Checked that the [docs release issue] created previously has been completed.
 - [ ] Updated, in a single PR, the following on `main`:
   - [ ] The [releases table] in the `README.md`, removing the now old unsupported release and adding the new one.
-  - [ ] The `baseBranches` list in `.github/renovate.json5`, removing the now old unsupported release.
+  - [ ] The `baseBranches` list in `.github/renovate-base.json5`, removing the now old unsupported release.
 - [ ] Closed the GitHub milestone for this release.
 - [ ] Request @jbw976 to perform a CloudFront cache invalidation on https://charts.crossplane.io/stable/ and https://releases.crossplane.io/stable/
 - [ ] Publish a blog post about the release to the [crossplane blog]

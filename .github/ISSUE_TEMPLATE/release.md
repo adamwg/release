@@ -58,10 +58,14 @@ examples of each step, assuming release vX.Y.0 is being cut.
 - [ ] Checked that the [GitHub milestone] for this release only contains closed issues.
 - [ ] Cut a Crossplane Runtime version and consume it from Crossplane.
   - [ ] **[In Crossplane Runtime]**:
+    - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into `release-X.Y`:
+      - https://github.com/crossplane/crossplane-runtime/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
     - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.0`. Message suggested, but not required: `Release vX.Y.0`.
     - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.<Y-1>.0`, so the first of the releases for the previous minor.
     - [ ] Update the `baseBranches` list in `.github/renovate-base.json5` on `main`, removing the now old unsupported release.
   - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Update the Crossplane Runtime dependency to `vX.Y.0`.
+- [ ] (On the **Release** Branch) Confirm that all security/critical dependency update PRs from Renovate are merged into `release-X.Y`:
+    - https://github.com/crossplane/crossplane/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
 - [ ] (On the **Release** Branch) Run the [Tag workflow][tag-workflow] with the proper release version, `vX.Y.0`. Message suggested, but not required: `Release vX.Y.0`.
 - [ ] (On the **Release** Branch) Run the [CI workflow][ci-workflow] and verified that the tagged build version exists on the [releases.crossplane.io] `build` channel, e.g. `build/release-X.Y/vX.Y.0/...` should contain all the relevant binaries.
 - [ ] (On the **Release** Branch) Run the [Promote workflow][promote-workflow] with channel `stable` and verified that the tagged build version exists on the [releases.crossplane.io] `stable` channel at `stable/vX.Y.0/...`.

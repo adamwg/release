@@ -21,13 +21,15 @@ Please ensure all artifacts (PRs, workflow runs, Tweets, etc) are linked from
 this issue for posterity. Refer to this [prior release issue][release-1.11.1] for
 examples of each step, assuming vX.Y.Z is being cut.
 
-- [ ] Determine whether a Crossplane Runtime patch is needed by checking if the `release-X.Y` branch of `crossplane-runtime` has commits ahead of its latest tag. If so, cut a Crossplane Runtime patch and consume it from Crossplane:
-  - [ ] **[In Crossplane Runtime]**:
-    - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into the `release-X.Y` branch
-      - https://github.com/crossplane/crossplane-runtime/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
-    - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.Z`. Message suggested, but not required: `Release vX.Y.Z`.
-    - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.Y.<Z-1>`, so the previous patch release for the same minor (or `vX.Y.0` for the first patch).
-  - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Open and merge a PR updating the Crossplane Runtime dependency to `vX.Y.Z`.
+- [ ] Determine whether a Crossplane Runtime patch is needed by checking if the `release-X.Y` branch of `crossplane-runtime` has commits ahead of its latest tag.
+  - One way to check this is `git log $(git describe --tags --abbrev=0 upstream/release-X.Y)..upstream/release-X.Y --oneline`, if it shows any commits then a patch release is needed.
+  - If a Crossplane Runtime patch is needed, cut a Crossplane Runtime patch and consume it from Crossplane:
+    - [ ] **[In Crossplane Runtime]**:
+      - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into the `release-X.Y` branch
+        - https://github.com/crossplane/crossplane-runtime/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
+      - [ ] Run the [Tag workflow][tag-workflow-runtime] on the `release-X.Y` branch with the proper release version, `vX.Y.Z`. Message suggested, but not required: `Release vX.Y.Z`.
+      - [ ] Published a [new release][new runtime release] for the tagged version, with the same name as the version, taking care of generating the changes list selecting as "Previous tag" `vX.Y.<Z-1>`, so the previous patch release for the same minor (or `vX.Y.0` for the first patch).
+    - [ ] **[In Core Crossplane]:** (On the **Release** Branch) Open and merge a PR updating the Crossplane Runtime dependency to `vX.Y.Z`.
 - [ ] Confirm that all security/critical dependency update PRs from Renovate are merged into the `release-X.Y` branch
   - https://github.com/crossplane/crossplane/pulls?q=is%3Apr+is%3Aopen+label%3Aautomated
 - [ ] Run the [Tag workflow][tag-workflow] on the `release-X.Y` branch with the proper release version, `vX.Y.Z`. Message suggested, but not required: `Release vX.Y.Z`.
